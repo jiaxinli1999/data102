@@ -1,0 +1,84 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for US/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Datasets Information}
+% \author{Jindi Chen, Jingqi Huang, Jiaxin Li, Jiarui Luo}
+% \date{\displaydate{December 13, 2021}}
+\data{}
+
+\begin{document}
+\maketitle
+
+% \setlength{\parindent}{0cm}
+\section{}
+We use four filted datasets, all coming from  Center for Disease Control and Prevention(\href{https://chronicdata.cdc.gov/Chronic-Disease-Inicators/U-S-Chronic-Disease-Indicators-CDI-/g4ie-h725}{CDC}). We also introduced an external dataset from United States Census Bureau (\href{https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html}) to provide information when merging data frames. 
+
+The five datasets we used are:
+
+\href{https://chronicdata.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators-Asthma/us8e-ubyj}{\textit{1. U.S. Chronic Disease Indicators: Asthma}}; The dataset contains answer data for indicator question focusing on asthma statistics state-wise and over years. The data has stratification categories over race, gender and overall. The datavalue has different value unit corresponding to questions, including crude rate, age-adjusted rate, and number.
+
+\href{https://data.cdc.gov/Environmental-Health-Toxicology/Daily-Census-Tract-Level-PM2-5-Concentrations-2011/fcqm-xrf4}{\textit{2. Daily Census Tract-Level PM2.5 Concentrations}}; The dataset provides modeled predictions of PM2.5 levels from the EPA's Downscaler model. Data are at the census tract level for 2011-2014. These data are used by the CDC's National Environmental Public Health Tracking Network to generate air quality measures. Census tract-level datasets contain estimates of the mean predicted concentration and associated standard error. 
+
+\href{https://chronicdata.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators-Cardiovascular-Dise/232j-jiq5}{\textit{3. U.S. Chronic Disease Indicators: Cardiovascular Disease}}; The dataset contains answer data for 18 indicator question focusing on cardiovascular disease state-wise over years. The data has stratification categories over race, gender and overall. The datavalue has different value unit corresponding to questions, including percentage, per 100,000 cases, number, and etc.
+
+\href{https://chronicdata.cdc.gov/Chronic-Disease-Indicators/U-S-Chronic-Disease-Indicators-Tobacco/rrbt-bhen}{\textit{4. U.S. Chronic Disease Indicators: Tobacco}}; The dataset contains answer data for 16 indicator question focusing on tobacco usage and related disease state-wise and over years. The data has stratification categories over race, gender and overall. The datavalue has different value unit corresponding to questions, including percentage, number, yes/no, and etc.
+
+All indicator datasets contains 33 columns. We provide the following table to show the important columns we used and what they represent. There are four more unmentioned stratification related columns with no information. There are low and high confidence interval of the datavalue. There are ID columns for almost every above columns, setting abbrevations, which we didn't use.
+
+\href{https://www.census.gov/library/reference/code-lists/ansi/ansi-codes-for-states.html}{\textit{5. FIPS Codes for the States and District of Columbia}}; The dataset contains information on name of each state, FIPS State Numeric Code, and Official USPS Code
+
+\begin{table}[h]
+\caption{\label{tab:questionIdTable2}Dataset Dictionary for Asthma, Tobacco, and Cardiovascular Disease}
+\centering
+\begin{tabular}{m|l}
+Column Name & Content \\\hline
+YearStart & Start year of the question data \\
+YearEnd & End year of the question data, same as YearStart; We combine as Year \\
+LocationAbbr & Two letter abbreviation of state name \\
+LocationDesc & Full name of states \\
+Datasource & Source of Data \\
+Topic & Withwhat topic the question is related \\
+Question & Question to collect the data \\
+Response & All NaN \\
+DataValue & Response for the Question \\
+DataValueALt & Backup for datavalue, all same value \\
+DataValueUnit & Unit of data value(per 100,000 cases, bool) \\
+DataValueType & Type of data value(number, yea/no)\\
+StratificationCategory1 & Category of straitification, include overall, gender, and race \\
+Stratification1 & Details of stratificatoin, including overall, male, female, Hispanic etc. \\
+... & ...
+
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+
+
+\caption{\label{tab:questionIdTable2}Dataset Dictionary for PM2.5 Concentration}
+\centering
+\begin{tabular}{m|l}
+Column Name & Content \\\hline
+year & Year of prediction \\
+date & Date (day-month-year) of prediction\\
+statefips & State FIPS code \\
+county & County FIPS code \\
+latitude & Latitude of census tract centroid (degrees) \\
+longitude & longitude of census tract centroid (degrees) \\
+ds\_pm\_pred & Mean estimated 24-hour average PM2.5 concentration in μg/m3 \\
+ds\_pm\_stdd & Standard error of the estimated PM2.5 concentration \\
+\end{tabular}
+\end{table}
+
+\end{document}
